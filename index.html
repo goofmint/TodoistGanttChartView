@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Todoist Gantt chart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://taitems.github.com/UX-Lab/core/css/prettify.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      padding: 0 0 50px 0;
+      }
+      .contain {
+      width: 800px;
+      margin: 0 auto;
+      }
+      h1 {
+      margin: 40px 0 20px 0;
+      }
+      h2 {
+      font-size: 1.5em;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #DDD;
+      margin-top: 50px;
+      margin-bottom: 25px;
+      }
+      table th:first-child {
+      width: 150px;
+      }
+      /* Bootstrap 3.0 re-reset */
+      .fn-gantt *,
+      .fn-gantt *:after,
+      .fn-gantt *:before {
+        -webkit-box-sizing: content-box;
+           -moz-box-sizing: content-box;
+                box-sizing: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contain">
+      <h1>
+	Gantt chart from Todoist
+      </h1>
+      <p>Auth token : <input type="text" size="40" id="auth_token" name="auth_token" value="" />
+      <a href="https://todoist.com/Users/viewPrefs?page=account" target="_blank">You can get auth token from here</a>
+    </p>
+    <p>
+      Project : <select id="projects">
+                  <option>Please choise project</option>
+                </select>
+    </p>
+      <div class="gantt"></div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.fn.gantt.js"></script>
+    <script src="js/todoist.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+    </body>
+</html>
