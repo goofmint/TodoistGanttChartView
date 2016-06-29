@@ -2,28 +2,30 @@ $ ->
   $("#auth_token").on 'change', (e) ->
     token = $("#auth_token").val()
     $.ajax
-      url: "https://api.todoist.com//API/getProjects",
+      url: "/projects",
       type: "GET",
-      dataType: "jsonp",
+      dataType: "json",
       data:
         token: token
       success: (data) ->
         $("#projects").empty()
-        $.each data, (i, project) ->
+        console.log data
+        $.each data.results.projects, (i, project) ->
           $("#projects").append $("<option>").html(project.name).val(project.id)
   $("#projects").on 'change', (e) ->
     project_id = $("#projects").val()
     token = $("#auth_token").val()
     $.ajax
-      url: "https://api.todoist.com/API/getUncompletedItems",
+      url: "/items",
       type: "GET",
-      dataType: "jsonp",
+      dataType: "json",
       data:
         token: token
         project_id: project_id
       success: (data) ->
+        console.log(data)
         tasks = []
-        $.each data, (i, params) ->
+        $.each data.results.items, (i, params) ->
           console.log params.content
           matches = params.content.match(/^(.*)\(([0-9]{4}-[0-9]{2}-[0-9]{2})\)$/)
           if matches
