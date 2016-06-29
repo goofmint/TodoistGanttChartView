@@ -26,6 +26,6 @@ app.get '/projects', (req, res) ->
 app.get '/items', (req, res) ->
   getData 'items', req, res
 
-app.listen 3000, ->
+app.listen process.env.PORT || 3000, ->
   console.log 'Listening on port 3000!'
   return
