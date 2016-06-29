@@ -10,9 +10,22 @@ Gantt Chart Viewer for Todoist.
 
 ## Demo
 
-[http://moongift.github.io/TodoistGanttChartView/](http://moongift.github.io/TodoistGanttChartView/)
+[https://todoistgantt.herokuapp.com/](https://todoistgantt.herokuapp.com/)
 
 *You need a Todoist's auth token.*
+
+**We don't save your auth token. But if you care about it, you can deploy your own TodoistGanttChartView on Heroku or your local computer.**
+
+## Deploy
+
+You need a node.js.
+
+```
+$ git clone git@github.com:moongift/TodoistGanttChartView.git
+$ cd TodoistGanttChartView
+$ npm install
+$ node_modules/coffee-script/bin/coffee server.coffee
+```
 
 ## Usage
 
@@ -31,3 +44,7 @@ If you want to change start date, change your task name format below.
 Ex)
 
 Create slide(2014-06-08)
+
+## LICENSE
+
+MIT LICENSE
