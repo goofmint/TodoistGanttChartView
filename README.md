@@ -10,6 +10,8 @@ Gantt Chart Viewer for Todoist.
 
 ## Demo
 
+Todoist doesn't accept JSONP access anymore. So I deploy a little server side script that access to the Todoist instead of your browser.
+
 [https://todoistgantt.herokuapp.com/](https://todoistgantt.herokuapp.com/)
 
 *You need a Todoist's auth token.*
