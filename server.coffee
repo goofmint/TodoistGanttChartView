@@ -19,7 +19,7 @@ getData = (resource_type, req, res) ->
       if err || !response.ok
         res.end JSON.stringify(err: err)
       else
-        res.end JSON.stringify(results: response.text)
+        res.end JSON.stringify(results: response.body)
   
 app.get '/projects', (req, res) ->
   getData 'projects', req, res
