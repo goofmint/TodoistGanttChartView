@@ -31,44 +31,47 @@
         data: {
           token: token,
           project_id: project_id
-        },
-        success: function(data) {
-          var tasks;
-          console.log(data);
-          tasks = [];
-          $.each(data.results.items, function(i, params) {
-            var from, matches, name;
-            console.log(params.content);
-            matches = params.content.match(/^(.*)\(([0-9]{4}-[0-9]{2}-[0-9]{2})\)$/);
-            if (matches) {
-              name = matches[1];
-              from = Date.parse(matches[2]);
-            } else {
-              name = params.content;
-              from = new Date();
-            }
-            return tasks.push({
-              name: name,
-              values: [
-                {
-                  from: "/Date(" + from + ")/",
-                  to: "/Date(" + (Date.parse(params.due_date)) + ")/",
-                  label: ""
-                }
-              ]
-            });
+        }
+      }).then(function(data) {
+        var tasks;
+        tasks = [];
+        $.each(data.results.items, function(i, params) {
+          var from, matches, name;
+          console.log(params);
+          if (params.project_id !== parseInt(project_id)) {
+            return;
+          }
+          matches = params.content.match(/^(.*)\(([0-9]{4}-[0-9]{2}-[0-9]{2})\)$/);
+          if (matches) {
+            name = matches[1];
+            from = Date.parse(matches[2]);
+          } else {
+            name = params.content;
+            from = new Date();
+          }
+          tasks.push({
+            name: name,
+            values: [
+              {
+                from: "/Date(" + from + ")/",
+                to: "/Date(" + (Date.parse(params.due_date_utc)) + ")/",
+                label: ""
+              }
+            ]
           });
           console.log(tasks);
           return $(".gantt").gantt({
             source: tasks
           });
-        },
-        navigate: "scroll",
-        maxScale: "hours",
-        itemsPerPage: 20,
-        onItemClick: function(data) {},
-        onAddClick: function(dt, rowId) {},
-        onRender: function() {}
+        });
+        return {
+          navigate: "scroll",
+          maxScale: "hours",
+          itemsPerPage: 20,
+          onItemClick: function(data) {},
+          onAddClick: function(dt, rowId) {},
+          onRender: function() {}
+        };
       });
     });
   });

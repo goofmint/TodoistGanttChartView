@@ -22,26 +22,27 @@ $ ->
       data:
         token: token
         project_id: project_id
-      success: (data) ->
-        console.log(data)
-        tasks = []
-        $.each data.results.items, (i, params) ->
-          console.log params.content
-          matches = params.content.match(/^(.*)\(([0-9]{4}-[0-9]{2}-[0-9]{2})\)$/)
-          if matches
-            name = matches[1]
-            from = Date.parse(matches[2])
-          else
-            name = params.content
-            from = new Date()
-          tasks.push
-            name: name
-            values: [
-              from: "/Date(#{from})/"
-              to:   "/Date(#{Date.parse(params.due_date)})/"
-              label: ""
-            ]
-        console.log tasks
+    .then (data) ->
+      tasks = []
+      $.each data.results.items, (i, params) ->
+        console.log(params)
+        unless params.project_id == parseInt(project_id)
+          return
+        matches = params.content.match(/^(.*)\(([0-9]{4}-[0-9]{2}-[0-9]{2})\)$/)
+        if matches
+          name = matches[1]
+          from = Date.parse(matches[2])
+        else
+          name = params.content
+          from = new Date()
+        tasks.push
+          name: name
+          values: [
+            from: "/Date(#{from})/"
+            to:   "/Date(#{Date.parse(params.due_date_utc)})/"
+            label: ""
+          ]
+        console.log(tasks)
         $(".gantt").gantt
           source: tasks
   				navigate: "scroll"
