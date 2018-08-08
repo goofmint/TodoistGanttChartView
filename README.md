@@ -26,7 +26,7 @@ You need a node.js.
 $ git clone git@github.com:moongift/TodoistGanttChartView.git
 $ cd TodoistGanttChartView
 $ npm install
-$ node_modules/coffee-script/bin/coffee server.coffee
+$ npm run start
 ```
 
 ## Usage
