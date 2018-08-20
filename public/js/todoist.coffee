@@ -1,6 +1,9 @@
 $ ->
   $("#auth_token").on 'change', (e) ->
     token = $("#auth_token").val()
+    localStorage.setItem('auth_token', token) if window.localStorage
+    updateProject()
+  updateProject = (token) ->
     $.ajax
       url: "/projects",
       type: "GET",
@@ -9,9 +12,12 @@ $ ->
         token: token
       success: (data) ->
         $("#projects").empty()
-        console.log data
         $.each data.results.projects, (i, project) ->
           $("#projects").append $("<option>").html(project.name).val(project.id)
+  if window.localStorage
+    token = localStorage.getItem('auth_token')
+    $("#auth_token").val(token)
+    updateProject(token) if token
   $("#projects").on 'change', (e) ->
     project_id = $("#projects").val()
     token = $("#auth_token").val()
@@ -45,9 +51,9 @@ $ ->
         console.log(tasks)
         $(".gantt").gantt
           source: tasks
-  				navigate: "scroll"
-  				maxScale: "hours"
-  				itemsPerPage: 20,
-  				onItemClick: (data) ->
-  				onAddClick: (dt, rowId) ->
-  				onRender: ->
+          navigate: "scroll"
+          maxScale: "hours"
+          itemsPerPage: tasks.length,
+          onItemClick: (data) ->
+          onAddClick: (dt, rowId) ->
+          onRender: ->

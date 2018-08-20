@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "coffee server.coffee"
+    "start": "coffee server.coffee",
+    "watch": "coffee -w -o public/js/ public/js/todoist.coffee"
   },
   "repository": {
     "type": "git",

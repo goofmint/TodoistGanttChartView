@@ -26,7 +26,6 @@
     "use strict";
 
     $.fn.gantt = function (options) {
-
         var cookieKey = "jquery.fn.gantt";
         var scales = ["hours", "days", "weeks", "months"];
         //Default settings
@@ -53,7 +52,6 @@
         if (options) {
             $.extend(settings, options);
         }
-
         // can't use cookie if don't have `$.cookie`
         settings.useCookie = settings.useCookie && $.isFunction($.cookie);
 
