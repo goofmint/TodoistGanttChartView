@@ -20,6 +20,6 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "express": "^4.14.0",
-    "superagent": "^2.0.0"
+    "superagent": "^3.8.3"
   }
 }
